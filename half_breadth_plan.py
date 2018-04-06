@@ -3,12 +3,9 @@ import matplotlib.pyplot as plt
 from numpy import genfromtxt
 tabel = genfromtxt('hydrostatics_table.csv',delimiter = ',')
 tabel = tabel/1000
-print(tabel)
 value = tabel[1:,1:]
-w_lines = tabel[0,1:]
-for i in range(0, value.shape[0]):
-	print('stn no :', tabel[i+1][0]*1000)
-	if(i < value.shape[0]/2):
-		value[i] = -1*value[i]
-	plt.plot(value[i], w_lines)
+stns = tabel[1:,0]
+for i in range(0, value.shape[1]):
+	print('wls no :', tabel[i+1][0])
+	plt.plot(stns, value[0:,i])
 plt.show()
